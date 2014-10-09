@@ -21,6 +21,7 @@ public class GuessInputFrame extends JFrame {
     private final Dimension d = new Dimension(350,550);
     JLabel label;
     JTextField text;
+    InputFrameList list;
     
     public GuessInputFrame(){
         super("Guess the Number");
@@ -28,11 +29,19 @@ public class GuessInputFrame extends JFrame {
         setSize(d);
         
         setLayout(new BoxLayout(getContentPane(), BoxLayout.PAGE_AXIS));
+        
+        
         label = new JLabel();
         text = new JTextField();
+        list = new InputFrameList();
+        
+        text.setSize(d.width, 100);
+        
         add(label);
         add(text);
+        add(list);
         setVisible(true);
+        setResizable(false);
     }
     
     
