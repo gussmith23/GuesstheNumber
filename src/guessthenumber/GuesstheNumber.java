@@ -7,8 +7,11 @@
 package guessthenumber;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 
 /**
@@ -24,19 +27,33 @@ public class GuesstheNumber {
     private static final int allowedGuesses = 7;
     private static final String errorMessage = "Please input a valid integer.";
     private static int lastDistanceToTarget = Integer.MAX_VALUE;
+    public static boolean reset = false;
     
     public static void main(String[] args) {
         
         guessInputFrame = new GuessInputFrame();
         
-        playGame();
-        
+        guessInputFrame.reset.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                guessInputFrame.dispose();
+                guessInputFrame = new GuessInputFrame();
+                
+                guessInputFrame.setVisible(true);
+                playGame();
+            }
+        });
+                
         
     }
     
     // Returns 1 if play again.
-    public static int playGame(){
-        
+    public static boolean playGame(){
+                
+        correct = false;
+        guesses = 0;
+        lastDistanceToTarget = Integer.MAX_VALUE;        
         number = (int) (1000*Math.random()) + 1;
         
         guessInputFrame.setLabelText("I have a number between 1 and 1000. Can you guess my number? (" + number + ").");
@@ -47,6 +64,7 @@ public class GuesstheNumber {
             @Override
             public void keyTyped(KeyEvent e) {
                 if (e.getKeyChar()!='\n') return;
+                if (guessInputFrame.text.getText().length() == 0) return;
                 
                 int guessedNumber;
                 
@@ -112,7 +130,7 @@ public class GuesstheNumber {
         });
         
         
-        while (guesses != allowedGuesses && !correct);
+        while (guesses != allowedGuesses && !correct) System.out.println("hi");
         
         // If they ended up guessing correctly...
         if(correct){
@@ -120,10 +138,15 @@ public class GuesstheNumber {
         }
         // Else, this is what happens if they're wrong.
         else {
-            guessInputFrame.feedback.setText("Boo shitlord");
-            guessInputFrame.text.setEditable(false);
+            guessInputFrame.feedback.setText("You used up all of your tries.");
         }
         
-        return 0;
+        // Either way, the game is over, so we set the boc to uneditable.
+        guessInputFrame.text.setEditable(false);
+        
+        
+        while(!reset);
+        
+        return true;
     }
 }

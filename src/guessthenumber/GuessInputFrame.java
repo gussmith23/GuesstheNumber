@@ -10,6 +10,7 @@ import java.awt.Dimension;
 import java.util.Vector;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -27,6 +28,7 @@ public class GuessInputFrame extends JFrame {
     JLabel label;
     JTextField text;
     JLabel feedback;
+    JButton reset;
     
     public GuessInputFrame(){
         super("Guess the Number");
@@ -37,8 +39,13 @@ public class GuessInputFrame extends JFrame {
         label = new JLabel();
         text = new JTextField();
         feedback = new JLabel();
+        reset = new JButton();
+        
         text.setSize(10, 10);
+        reset.setText("New Game");
+        
         add(label);
+        add(reset);
         add(text);
         add(feedback);
         setVisible(true);
