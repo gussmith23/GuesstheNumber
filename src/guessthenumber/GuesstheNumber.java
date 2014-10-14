@@ -118,8 +118,10 @@ public class GuesstheNumber {
         if(correct){
             guessInputFrame.feedback.setText("You guessed correctly!");
         }
+        // Else, this is what happens if they're wrong.
         else {
             guessInputFrame.feedback.setText("Boo shitlord");
+            guessInputFrame.text.setEditable(false);
         }
         
         return 0;
