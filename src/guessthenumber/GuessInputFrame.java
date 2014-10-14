@@ -26,28 +26,21 @@ public class GuessInputFrame extends JFrame {
     private final Dimension d = new Dimension(350,550);
     JLabel label;
     JTextField text;
-    JList previousGuessesList;
-    JScrollPane previousGuessesListScrollPane;
-    DefaultListModel<String> previousGuessesListListModel;
+    JLabel feedback;
     
     public GuessInputFrame(){
         super("Guess the Number");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(d);
-        
-        previousGuessesListListModel = new DefaultListModel<String>();
-        previousGuessesList = new JList(previousGuessesListListModel);
-        previousGuessesList.setVisibleRowCount(7);
-        previousGuessesListScrollPane = new JScrollPane(previousGuessesList);
-        
+        setSize(d);        
         
         setLayout(new BoxLayout(getContentPane(), BoxLayout.PAGE_AXIS));
         label = new JLabel();
         text = new JTextField();
+        feedback = new JLabel();
         text.setSize(10, 10);
         add(label);
         add(text);
-        add(previousGuessesListScrollPane);
+        add(feedback);
         setVisible(true);
         
         
@@ -58,8 +51,6 @@ public class GuessInputFrame extends JFrame {
         label.setText(str);
     }
     
-    public void addItemToList(String item) {
-        previousGuessesListListModel.add(previousGuessesListListModel.getSize(), item);
-    }
+    
     
 }
