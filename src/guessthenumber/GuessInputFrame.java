@@ -7,6 +7,7 @@
 package guessthenumber;
 
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.util.Vector;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
@@ -24,7 +25,7 @@ import javax.swing.ListModel;
  */
 public class GuessInputFrame extends JFrame {
     
-    private final Dimension d = new Dimension(350,550);
+    private final Dimension d = new Dimension(400,120);
     JLabel label;
     JTextField text;
     JLabel feedback;
@@ -35,21 +36,19 @@ public class GuessInputFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(d);        
         
-        setLayout(new BoxLayout(getContentPane(), BoxLayout.PAGE_AXIS));
+        setLayout(new FlowLayout(FlowLayout.CENTER));
         label = new JLabel();
-        text = new JTextField();
+        text = new JTextField(4);
         feedback = new JLabel();
         reset = new JButton();
         
-        text.setSize(10, 10);
         reset.setText("New Game");
         
-        add(label);
         add(reset);
+        add(label);
         add(text);
         add(feedback);
         setVisible(true);
-        
         
     }
     
@@ -58,6 +57,8 @@ public class GuessInputFrame extends JFrame {
         label.setText(str);
     }
     
-    
+    public void setFeedbackText(String str){
+        feedback.setText(str);
+    }
     
 }
